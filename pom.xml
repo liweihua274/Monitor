@@ -11,6 +11,7 @@
     <modules>
         <module>monitor-agent</module>
         <module>monitor-server</module>
+        <module>monitor-common</module>
     </modules>
 
 
