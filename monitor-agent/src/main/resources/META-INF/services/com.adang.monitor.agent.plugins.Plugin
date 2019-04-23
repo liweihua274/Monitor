@@ -1,1 +1,2 @@
 com.adang.monitor.agent.plugins.jvm.JvmPlugin
+com.adang.monitor.agent.plugins.transport.BoltTransportPlugin

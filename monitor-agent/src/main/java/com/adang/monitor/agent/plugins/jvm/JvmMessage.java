@@ -1,8 +1,8 @@
 package com.adang.monitor.agent.plugins.jvm;
 
-import com.adang.monitor.agent.store.Message;
+import com.adang.monitor.agent.store.MessagePersistence;
 
-public class JvmMessage extends Message {
+public class JvmMessage extends MessagePersistence {
     /**
      * 类型  memory，gc，cpu
      */

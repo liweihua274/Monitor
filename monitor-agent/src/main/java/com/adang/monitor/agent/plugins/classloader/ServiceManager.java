@@ -1,4 +1,4 @@
-package com.adang.monitor.agent.classloader;
+package com.adang.monitor.agent.plugins.classloader;
 
 import com.adang.monitor.agent.plugins.Plugin;
 
@@ -16,12 +16,14 @@ public class ServiceManager {
     /**
      * 加载插件实例
      */
-    public void load(){
+    public List<Plugin> load(){
+        System.out.println("serviceManager load");
         ServiceLoader<Plugin> serviceLoader  = ServiceLoader.load(Plugin.class, MonitorClassLoader.getMonitorClassLoader());
         for (Plugin plugin: serviceLoader){
-            System.out.println(plugin.excute());
+            System.out.println(plugin.load());
             services.add(plugin);
         }
+        return services;
     }
 
 

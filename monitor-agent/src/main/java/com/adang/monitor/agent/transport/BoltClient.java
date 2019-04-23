@@ -32,19 +32,19 @@ import org.slf4j.LoggerFactory;
  * @author tsui
  * @version $Id: ClientConnectionTest.java, v 0.1 2017-09-13 14:20 tsui Exp $
  */
-public class ClientConnectionTest {
+public  class BoltClient {
     static Logger             logger                    = LoggerFactory
-            .getLogger(ClientConnectionTest.class);
+            .getLogger(BoltClient.class);
 
-    static RpcClient          client;
+    private RpcClient client;
 
-    static String             addr                      = "127.0.0.1:8999";
+    private final String  addr                      = "127.0.0.1:8999";
 
     SimpleClientUserProcessor clientUserProcessor       = new SimpleClientUserProcessor();
-    CONNECTEventProcessor clientConnectProcessor    = new CONNECTEventProcessor();
-    DISCONNECTEventProcessor clientDisConnectProcessor = new DISCONNECTEventProcessor();
+    private final CONNECTEventProcessor clientConnectProcessor    = new CONNECTEventProcessor();
+    private final DISCONNECTEventProcessor clientDisConnectProcessor = new DISCONNECTEventProcessor();
 
-    public ClientConnectionTest() {
+    public BoltClient() {
         // 1. create a rpc client
         client = new RpcClient();
         // 2. add processor for connect and close event if you need
@@ -54,11 +54,26 @@ public class ClientConnectionTest {
         client.init();
     }
 
+    public String send(RequestBody requestBody){
+        String res = null;
+        try {
+            res = (String) client.invokeSync(addr, requestBody, 3000);
+        } catch (RemotingException e) {
+            String errMsg = "RemotingException caught in oneway!";
+            logger.error(errMsg, e);
+            Assert.fail(errMsg);
+        } catch (InterruptedException e) {
+            logger.error("interrupted!");
+        }
+        return res;
+
+    }
+
     public static void main(String[] args) {
-        new ClientConnectionTest();
+        BoltClient bolt = new BoltClient();
         RequestBody req = new RequestBody(2, "hello world sync");
         try {
-            String res = (String) client.invokeSync(addr, req, 3000);
+            String res = (String) bolt.client.invokeSync(bolt.addr, req, 3000);
             System.out.println("invoke sync result = [" + res + "]");
         } catch (RemotingException e) {
             String errMsg = "RemotingException caught in oneway!";
@@ -67,7 +82,7 @@ public class ClientConnectionTest {
         } catch (InterruptedException e) {
             logger.error("interrupted!");
         }
-        client.shutdown();
+        bolt.client.shutdown();
     }
 
 }

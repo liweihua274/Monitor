@@ -11,6 +11,8 @@
 
     <artifactId>monitor-server</artifactId>
 
+    <name>monitor-server 1.0-SNAPSHOT</name>
+
     <dependencies>
         <dependency>
             <groupId>com.adang.monitor</groupId>
@@ -31,5 +33,35 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <finalName>monitor-server</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestFile>
+                            src/main/resources/META-INF/MANIFEST.MF
+                        </manifestFile>
+                        <manifest>
+                            <addDefaultImplementationEntries/>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

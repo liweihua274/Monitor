@@ -3,7 +3,7 @@ package com.adang.monitor.agent.store;
 /**
  * 消息存储结构
  */
-public abstract class Message {
+public abstract class MessagePersistence {
 
     /**
      * 主键 id

@@ -14,7 +14,7 @@ public interface Plugin {
     void afterLoad();
 
 
-    String excute();
+    String load();
 
     /**
      *

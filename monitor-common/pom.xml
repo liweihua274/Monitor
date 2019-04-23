@@ -13,7 +13,7 @@
     <artifactId>monitor-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>monitor-common Maven Webapp</name>
+    <name>monitor-common 1.0-SNAPSHOT</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 

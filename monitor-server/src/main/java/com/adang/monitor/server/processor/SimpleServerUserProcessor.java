@@ -45,6 +45,8 @@ public class SimpleServerUserProcessor extends SyncUserProcessor<RequestBody> {
 
      //   latch.countDown();
         logger.warn("Server User processor say, remote address is [" + this.remoteAddr + "].");
+        //todo 单开多线程处理
+
        // Assert.assertEquals(RequestBody.class, request.getClass());
    //     processTimes(request);
      /*   if (!delaySwitch) {

@@ -1,33 +1,40 @@
 package com.adang.monitor.agent.plugins;
 
-import java.util.HashMap;
+import com.adang.monitor.agent.plugins.classloader.ServiceManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PluginManager {
 
     /**
      * 加载的插件列表
      */
-    private HashMap<String, PluginConfig> pluginConfigHashMap = new HashMap<String, PluginConfig>();
+    private List<Plugin> plugins = new ArrayList<Plugin>();
+
+
 
     /**
      * 初始化
      */
-    void init(){
-
+    public void init() {
+        ServiceManager serviceManager = new ServiceManager();
+        plugins=serviceManager.load();
     }
+
 
 
     /**
      * 加载插件
      */
-    void loadPlugin(){
+    public void loadPlugin() {
 
     }
 
     /**
      * 摧毁
      */
-    void destory(){
+    public void destory() {
 
     }
 
